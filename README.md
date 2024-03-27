@@ -1,4 +1,4 @@
-# API - Champions Leagueo Of Legends com IA
+# API - Champions Leagueo Of Legends com IA (Inteligência Artificial)
 
 ## Santander Dev Week 2024
 
