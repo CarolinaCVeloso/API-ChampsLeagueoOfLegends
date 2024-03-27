@@ -1,6 +1,6 @@
 package carolina.sdw24.domain.model;
 
-public record Champions(
+public record Champion(
         Long id,
         String name,
         String role,
