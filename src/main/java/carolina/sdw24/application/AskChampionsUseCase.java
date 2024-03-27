@@ -10,7 +10,7 @@ public record AskChampionsUseCase(ChampionsRepository repository) {
         Champion champion = repository.findById(championId)
                 .orElseThrow(() -> new ChampionNotFoundException(championId));
 
-        String context = champion.generateContextByQuestion(champion, question);
+        String context = champion.generateContextByQuestion(question);
         // TODO : Evoluir a lógica para considerar a integração com IA
         return context;
     }
