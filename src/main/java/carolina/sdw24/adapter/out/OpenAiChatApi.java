@@ -27,7 +27,6 @@ public interface OpenAiChatApi extends GenerativeAiApi {
 
     record OpenAiChatCompletionReq(String model, List<Message> messages) {}
     record Message(String role, String content) {}
-
     record OpenAiChatCompletionResp(List<Choice> choices) {}
     record Choice(Message message){}
 
