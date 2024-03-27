@@ -1,4 +1,6 @@
-# API-ChampsLeagueoOfLegends
+# API - Champions Leagueo Of Legends com IA
+
+## Santander Dev Week 2024
 
 Neste repositório, você encontrará o código-fonte de uma REST API e seu respectivo Frontend (pasta /docs), desenvolvidos durante a Santander Dev Week 2024, fruto de uma colaboração entre a DIO e o Santander. Este projeto, construído com Java 21 e Spring Boot 3, é o resultado de quatro dias de lives, com um propósito singular:
 
