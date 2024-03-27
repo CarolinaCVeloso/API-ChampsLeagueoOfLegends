@@ -12,6 +12,7 @@ public record AskChampionsUseCase(ChampionsRepository repository) {
 
         String championContext = champion.generateContextByQuestion(question);
         // TODO : Evoluir a lógica para considerar a integração com IA
+
         return championContext;
     }
 }

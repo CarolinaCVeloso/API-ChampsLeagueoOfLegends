@@ -15,7 +15,6 @@ public record Champion(
         Função: %s
         Lore (História): %s
         """.formatted(question, this.name,this.role,this.lore);
-
     }
 
 }
