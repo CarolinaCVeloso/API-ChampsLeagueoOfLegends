@@ -1,5 +1,6 @@
 package carolina.sdw24;
 
+import carolina.sdw24.application.AskChampionsUseCase;
 import carolina.sdw24.application.ListChampionsUseCase;
 import carolina.sdw24.domain.ports.ChampionsRepository;
 import org.springframework.boot.SpringApplication;
@@ -16,5 +17,10 @@ public class Application {
 	@Bean
 	public ListChampionsUseCase provideListChampionsUseCase(ChampionsRepository repository) {
 		return new ListChampionsUseCase(repository);
+	}
+
+	@Bean
+	public AskChampionsUseCase provideAskChampionsUseCase(ChampionsRepository repository) {
+		return new AskChampionsUseCase(repository);
 	}
 }
