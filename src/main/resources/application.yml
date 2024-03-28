@@ -11,6 +11,9 @@ spring:
       enabled: true
       path: '/h2-console'
 
+generative-ai:
+  provider: openai
+
 openai:
   base-url: https://api.openai.com
   api-key: ${OPENAI_API_KEY}
