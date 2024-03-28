@@ -1,6 +1,6 @@
 package carolina.sdw24.domain.ports;
 
-public interface GenerativeAiApi {
+public interface GenerativeAiService {
 
     String generateContent(String objective, String context);
 

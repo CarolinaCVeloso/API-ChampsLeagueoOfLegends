@@ -1,14 +1,18 @@
 package carolina.sdw24.adapter.out;
 
-import carolina.sdw24.domain.ports.GenerativeAiApi;
-import org.apache.logging.log4j.message.Message;
+import carolina.sdw24.domain.ports.GenerativeAiService;
+import feign.RequestInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@FeignClient(name = "OpenAiChatApi", url = "${openai.base-url}")
-public interface OpenAiChatApi extends GenerativeAiApi {
+
+@FeignClient(name = "OpenAiChatApi", url = "${openai.base-url}", configuration = OpenAiChatService.Config.class)
+public interface OpenAiChatService extends GenerativeAiService {
 
     @PostMapping("/v1/chat/completions")
     OpenAiChatCompletionResp chatCompletion(OpenAiChatCompletionReq request);
@@ -30,6 +34,13 @@ public interface OpenAiChatApi extends GenerativeAiApi {
     record OpenAiChatCompletionResp(List<Choice> choices) {}
     record Choice(Message message){}
 
+    class Config{
+        @Bean
+        public RequestInterceptor apiKeyRequestInterceptor(@Value("${openai.api-key}") String apiKey){
+            return requestTemplate -> requestTemplate.header(
+                    HttpHeaders.AUTHORIZATION, "Bearer %s".formatted(apiKey));
+        }
+    }
 
 
 
