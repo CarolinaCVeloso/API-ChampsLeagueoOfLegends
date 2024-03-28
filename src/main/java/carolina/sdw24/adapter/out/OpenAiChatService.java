@@ -4,6 +4,7 @@ import carolina.sdw24.domain.ports.GenerativeAiService;
 import feign.FeignException;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 
+@ConditionalOnProperty(name = "generative-ai.provider", havingValue = "OPENAI", matchIfMissing = true)
 @FeignClient(name = "OpenAiChatApi", url = "${openai.base-url}", configuration = OpenAiChatService.Config.class)
 public interface OpenAiChatService extends GenerativeAiService {
 
