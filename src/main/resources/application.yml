@@ -12,7 +12,7 @@ spring:
       path: '/h2-console'
 
 generative-ai:
-  provider: OPENAI
+  provider: ${GENERATIVE_AI_PROVIDER}
 
 openai:
   base-url: https://api.openai.com
