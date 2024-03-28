@@ -1,6 +1,7 @@
 package carolina.sdw24.adapter.out;
 
 import carolina.sdw24.domain.ports.GenerativeAiService;
+import feign.FeignException;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -25,8 +26,14 @@ public interface OpenAiChatService extends GenerativeAiService {
                 new Message("user", context)
         );
         OpenAiChatCompletionReq req = new OpenAiChatCompletionReq (model, messages);
-        OpenAiChatCompletionResp resp = chatCompletion(req);
-        return resp.choices().getFirst().message().content();
+        try {
+            OpenAiChatCompletionResp resp = chatCompletion(req);
+            return resp.choices().getFirst().message().content();
+        } catch (FeignException httpErrors) {
+            return "Deu ruim! Erro de comunicação com a API da OpenAI";
+        } catch (Exception unexpectedError) {
+            return "Deu mais ruim ainda! O retorno da API da OpenAI não contém os dados esperados";
+        }
     }
 
     record OpenAiChatCompletionReq(String model, List<Message> messages) {}
